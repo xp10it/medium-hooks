@@ -4,6 +4,7 @@ import React from "react";
 import GlobalFeed from "./pages/globalFeed";
 import Article from "./pages/article";
 import Header from "./components/Header";
+import Authentication from "./pages/authentication";
 
 export default () => {
     return (
@@ -11,6 +12,8 @@ export default () => {
             <Header />
             <Routes>
                 <Route path='/' element={<GlobalFeed/>}/>
+                <Route path='/login' element={<Authentication/>}/>
+                <Route path='/register' element={<Authentication/>}/>
                 <Route path='/articles/:slug' element={<Article/>}/>
             </Routes>
         </BrowserRouter>
