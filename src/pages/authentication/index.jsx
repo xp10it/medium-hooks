@@ -1,24 +1,32 @@
 import React, {useState, useEffect} from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 const Authentication = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [{response, isLoading, error}, doFetch] = useFetch('/users/login');
+    const location = useLocation().pathname;
 
-    console.log('foo', response, isLoading, error);
+    const isLogin = location === '/login';
+
+    const titleText = isLogin ? 'Login' : 'Registration';
+    const link = isLogin ? 'Need an account' : 'Have an account?';
+    const title = document.title = titleText;
+    const submit = isLogin ? 'Sign-in' : 'Sign-up';
+    const requestUrl = isLogin ? '/users/login' : '/users';
+
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [{response, isLoading, error}, doFetch] = useFetch(requestUrl);
+
+    console.log(username)
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const user = isLogin ? {email, password} : {username, email, password};
+
         doFetch({
             method: 'post',
-            data: {
-                users: {
-                    email: 'qq@qq.COM',
-                    password: '123'
-                }
-            }
+            data: {user}
         })
     }
 
@@ -27,15 +35,27 @@ const Authentication = () => {
             <div className="container page">
                 <div className="row">
                     <div className="col-md-6 offset-md-3 col-xs-12">
-                        <h1 className="text-xs-center">login</h1>
+                        <h1 className="text-xs-center">{titleText}</h1>
                         <p className="text-xs-center">
-                            <NavLink to="/register">Need an account?</NavLink>
+                            <NavLink to="/register">{link}</NavLink>
                         </p>
                         <form onSubmit={handleSubmit}>
+                            {!isLogin
+                                ? <fieldset className="form-group">
+                                    <input
+                                        type="text"
+                                        className="form-control form-control-lg"
+                                        placeholder="username"
+                                        value={username}
+                                        onChange={e => setUsername(e.target.value)}
+                                    />
+                                </fieldset>
+                                : null
+                            }
                             <fieldset className="form-group">
                                 <fieldset className="form-group">
                                     <input
-                                        type="text"
+                                        type="email"
                                         className="form-control form-control-lg"
                                         placeholder="Email"
                                         value={email}
@@ -55,7 +75,7 @@ const Authentication = () => {
                                         type="submit"
                                         disabled={isLoading}
                                 >
-                                    Sign-in
+                                    {submit}
                                 </button>
                             </fieldset>
                         </form>

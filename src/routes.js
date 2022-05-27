@@ -13,7 +13,7 @@ export default () => {
             <Routes>
                 <Route path='/' element={<GlobalFeed/>}/>
                 <Route path='/login' element={<Authentication/>}/>
-                <Route path='/register' element={<Authentication/>}/>
+                <Route path='/registration' element={<Authentication/>}/>
                 <Route path='/articles/:slug' element={<Article/>}/>
             </Routes>
         </BrowserRouter>
