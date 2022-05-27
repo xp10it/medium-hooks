@@ -3,6 +3,7 @@ import {NavLink, Navigate, useLocation} from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import {CurrentUserContext} from "../../context/currentUser";
+import BackendErrorMessages from "../../components/BackendErrorMessages";
 
 const Authentication = () => {
     const location = useLocation().pathname;
@@ -59,6 +60,7 @@ const Authentication = () => {
                             <NavLink to="/register">{link}</NavLink>
                         </p>
                         <form onSubmit={handleSubmit}>
+                            {error && <BackendErrorMessages backendErrors={error.errors} />}
                             {!isLogin
                                 ? <fieldset className="form-group">
                                     <input
