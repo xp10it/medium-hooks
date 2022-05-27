@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {NavLink, Navigate, useLocation} from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import {CurrentUserContext} from "../../context/currentUser";
 
 const Authentication = () => {
     const location = useLocation().pathname;
@@ -20,6 +21,7 @@ const Authentication = () => {
     const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState(false);
     const [{response, isLoading, error}, doFetch] = useFetch(requestUrl);
     const [token, setToken] = useLocalStorage('token');
+    const [currentUserState, setCurrentUserState] = useContext(CurrentUserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,9 +37,17 @@ const Authentication = () => {
         if (!response) return;
         setToken(response.user.token);
         setIsSuccessfulSubmit(true);
+        setCurrentUserState(state => ({
+            ...state,
+            isLoggedIn: true,
+            isLoading: false,
+            currentUser: response.user
+        }))
     }, [response]);
 
-    if (isSuccessfulSubmit) return <Navigate to={'/'} />
+    console.log(currentUserState)
+
+    if (isSuccessfulSubmit) return <Navigate to={'/'}/>
 
     return (
         <div className="auth-page">
