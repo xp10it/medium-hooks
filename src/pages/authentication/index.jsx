@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {NavLink, useLocation} from "react-router-dom";
+import {NavLink, Navigate, useLocation} from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const Authentication = () => {
     const location = useLocation().pathname;
@@ -16,9 +17,9 @@ const Authentication = () => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState(false);
     const [{response, isLoading, error}, doFetch] = useFetch(requestUrl);
-
-    console.log(username)
+    const [token, setToken] = useLocalStorage('token');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,6 +30,14 @@ const Authentication = () => {
             data: {user}
         })
     }
+
+    useEffect(() => {
+        if (!response) return;
+        setToken(response.user.token);
+        setIsSuccessfulSubmit(true);
+    }, [response]);
+
+    if (isSuccessfulSubmit) return <Navigate to={'/'} />
 
     return (
         <div className="auth-page">
@@ -45,7 +54,7 @@ const Authentication = () => {
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
-                                        placeholder="username"
+                                        placeholder="Username"
                                         value={username}
                                         onChange={e => setUsername(e.target.value)}
                                     />
