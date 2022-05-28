@@ -4,13 +4,16 @@ import Routes from "./routes";
 import {CurrentUserProvider} from "./context/currentUser";
 import Header from "./components/Header";
 import {BrowserRouter} from "react-router-dom";
+import CurrentUserChecker from "./components/currentUserChecker";
 
 const App = () => {
     return (
         <BrowserRouter>
             <CurrentUserProvider>
-            <Header/>
-                <Routes/>
+                <CurrentUserChecker>
+                    <Header/>
+                    <Routes/>
+                </CurrentUserChecker>
             </CurrentUserProvider>
         </BrowserRouter>
     )
