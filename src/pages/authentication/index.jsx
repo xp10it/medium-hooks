@@ -46,8 +46,6 @@ const Authentication = () => {
         }))
     }, [response]);
 
-    console.log(currentUserState)
-
     if (isSuccessfulSubmit) return <Navigate to={'/'}/>
 
     return (
