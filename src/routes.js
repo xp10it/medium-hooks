@@ -12,6 +12,7 @@ export default () => {
         <Routes>
             <Route path='/' element={<GlobalFeed/>}/>
             <Route path='/tags/:slug' element={<TagFeed/>}/>
+            <Route path='/articles/:slug' element={<Article/>}/>
             <Route path='/feed' element={<YourFeed/>}/>
             <Route path='/login' element={<Authentication/>}/>
             <Route path='/registration' element={<Authentication/>}/>

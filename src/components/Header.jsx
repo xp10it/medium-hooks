@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import {useContext} from "react";
 import {CurrentUserContext} from "../context/currentUser";
 
-const Header = (props) => {
+const Header = () => {
     const [currentUserState] = useContext(CurrentUserContext);
     return (
         <div className='navbar navbar-light'>
@@ -26,7 +26,9 @@ const Header = (props) => {
                     {currentUserState.isLoggedIn && (
                         <>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/articles/new">New Post</NavLink>
+                                <NavLink className="nav-link" to="/articles/new">
+                                    <i className="ion-compose"/> New Post
+                                </NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink
