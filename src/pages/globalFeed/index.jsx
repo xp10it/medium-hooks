@@ -1,15 +1,31 @@
 import React, {useEffect} from 'react';
+import {useLocation} from 'react-router-dom';
 
 import useFetch from "../../hooks/useFetch";
 import Feed from "../../components/Feed";
+import Pagination from "../../components/Pagination";
+import {getPaginator, limit} from "../../utils/utils";
+import {stringify} from "query-string";
+import PopularTags from "../../components/PopularTags";
+import Loading from "../../components/Loading";
+import Error from "../../components/Error";
 
 const GlobalFeed = () => {
-    const apiUrl = '/articles?limit=10&offset=0';
+    const location = useLocation();
+
+    const {offset, currentPage} = getPaginator(location.search);
+    const stringifiedParams = stringify({
+        limit,
+        offset
+    })
+
+    const apiUrl = `/articles?${stringifiedParams}`;
     const [{response, isLoading, error}, doFetch] = useFetch(apiUrl);
+    const url = location.pathname;
 
     useEffect(() => {
         doFetch();
-    }, [doFetch])
+    }, [doFetch, currentPage])
 
     return (
         <div className="home-page">
@@ -22,14 +38,22 @@ const GlobalFeed = () => {
             <div className="container page">
                 <div className="row">
                     <div className="col-md-9">
-                        {isLoading && <div>Loading...</div>}
-                        {error && <div>Some error happened</div>}
+                        {isLoading && <Loading />}
+                        {error && <Error />}
                         {!isLoading && response && (
-                            <Feed articles={response.articles}/>
+                            <>
+                                <Feed articles={response.articles}/>
+                                <Pagination
+                                    total={response.articlesCount}
+                                    limit={limit}
+                                    currentPage={currentPage}
+                                    url={url}
+                                />
+                            </>
                         )}
                     </div>
                     <div className="col-md-3">
-                        Popular tags
+                        <PopularTags />
                     </div>
                 </div>
             </div>
