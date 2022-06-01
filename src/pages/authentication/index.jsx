@@ -21,8 +21,8 @@ const Authentication = () => {
     const [password, setPassword] = useState('');
     const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState(false);
     const [{response, isLoading, error}, doFetch] = useFetch(requestUrl);
-    const [token, setToken] = useLocalStorage('token');
-    const [currentUserState, setCurrentUserState] = useContext(CurrentUserContext);
+    const [, setToken] = useLocalStorage('token');
+    const [, dispatch] = useContext(CurrentUserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -33,17 +33,11 @@ const Authentication = () => {
             data: {user}
         })
     }
-
     useEffect(() => {
         if (!response) return;
         setToken(response.user.token);
         setIsSuccessfulSubmit(true);
-        setCurrentUserState(state => ({
-            ...state,
-            isLoggedIn: true,
-            isLoading: false,
-            currentUser: response.user
-        }))
+        dispatch({type: 'SET_AUTHORIZED', payload: response.user})
     }, [response]);
 
     if (isSuccessfulSubmit) return <Navigate to={'/'}/>
