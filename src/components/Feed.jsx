@@ -21,7 +21,7 @@ const Feed = ({articles}) => {
                             <span className="date">{article.createdAt}</span>
                         </div>
                     </div>
-                    <NavLink to={`/articles/${article.slug}`} className="preview-NavLink">
+                    <NavLink to={`/articles/${article.slug}`} className="preview-link">
                         <h1>{article.title}</h1>
                         <p>{article.description}</p>
                         <span>Read more...</span>
