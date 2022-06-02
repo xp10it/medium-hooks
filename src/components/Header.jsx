@@ -31,6 +31,11 @@ const Header = () => {
                                 </NavLink>
                             </li>
                             <li className="nav-item">
+                                <NavLink className="nav-link" to="/settings">
+                                    <i className="ion-gear-a"/> Settings
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
                                 <NavLink
                                     className="nav-link"
                                     to={`/profile/${currentUserState.currentUser.username}`}

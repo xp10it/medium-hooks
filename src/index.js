@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+import './App.scss';
 import Routes from "./routes";
 import {CurrentUserProvider} from "./context/currentUser";
 import Header from "./components/Header";

@@ -1,6 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import TagList from './TagList'
+import AddToFavorites from "./addToFavorites";
 
 const Feed = ({articles}) => {
     return (
@@ -19,6 +20,13 @@ const Feed = ({articles}) => {
                                 {article.author.username}
                             </NavLink>
                             <span className="date">{article.createdAt}</span>
+                        </div>
+                        <div className="pull-xs-right">
+                            <AddToFavorites
+                                isFavorited={article.favorited}
+                                favoritesCount={article.favoritesCount}
+                                articleSlug={article.slug}
+                            />
                         </div>
                     </div>
                     <NavLink to={`/articles/${article.slug}`} className="preview-link">

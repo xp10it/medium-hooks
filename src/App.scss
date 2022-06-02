@@ -1,0 +1,43 @@
+.btn {
+  transition: .3s all ease;
+  outline: none;
+  outline-offset: inherit;
+
+  &:focus {
+    outline: none;
+    outline-offset: 0;
+  }
+
+  &:active:focus {
+    outline: none;
+  }
+}
+
+.like {
+  background: #ffffff;
+  border: 1px solid #5cb85c;
+  color: #5cb85c;
+
+  &:hover {
+    color: #ffffff;
+    background: #5cb85c;
+  }
+}
+
+.nav-link_inactive {
+  border-bottom: none !important;
+}
+
+.nav-link_inactive.active {
+  position: relative;
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 4px;
+    background: #ffffff;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+  }
+}
