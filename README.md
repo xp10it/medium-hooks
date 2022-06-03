@@ -19,10 +19,10 @@
 
 # Stack
 
-- ⚡ [React](https://ru.reactjs.org/),
-- ⭐ [Axios](https://github.com/axios/axios),
-- 🚀 [Webpack](https://vuejs.org/),
-- 💻 [SCSS](https://sass-lang.com/).
+- ⚡ [React](https://ru.reactjs.org/)
+- ⭐ [Axios](https://github.com/axios/axios)
+- 🚀 [Webpack](https://vuejs.org/)
+- 💻 [SCSS](https://sass-lang.com/)
  
 # Documentation 
 
@@ -87,12 +87,12 @@ Current hook facilitate interaction with localStorage
 # Features
 
 - Sign-up, sign-in and sign-out 
-- Post and delete your article,
-- Like and dislike other users,
-- Сustomize your profile and upload an avatar,
-- Filtration feed by tags,
-- Subscribe to other users,
-- Add articles to favorites.
+- Post and delete your article
+- Like and dislike other users
+- Сustomize your profile and upload an avatar
+- Filtration feed by tags
+- Subscribe to other users
+- Add articles to favorites
 
 
 
