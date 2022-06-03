@@ -17,15 +17,12 @@
 
 ### <a href="">Deployed application</a>
 
-<hr>
-
 # Stack
 
 - ⚡ [React](https://ru.reactjs.org/),
 - ⭐ [Axios](https://github.com/axios/axios),
 - 🚀 [Webpack](https://vuejs.org/),
-- 💻 [SCSS](https://sass-lang.com/),
-<hr>
+- 💻 [SCSS](https://sass-lang.com/).
  
 # Documentation 
 
@@ -86,7 +83,6 @@ Current hook facilitate interaction with localStorage
     return [value, setValue]
 }
   ```
-<hr>
 
 # Features
 
