@@ -86,13 +86,13 @@ Current hook facilitate interaction with localStorage
 
 # Features
 
-- #### Sign-up, sign-in and sign-out 
-- #### Post and delete your article,
-- #### Like and dislike other users,
-- #### Сustomize your profile and upload an avatar,
-- #### Filtration feed by tags,
-- #### Subscribe to other users,
-- #### Add articles to favorites_
+- Sign-up, sign-in and sign-out 
+- Post and delete your article,
+- Like and dislike other users,
+- Сustomize your profile and upload an avatar,
+- Filtration feed by tags,
+- Subscribe to other users,
+- Add articles to favorites.
 
 
 
