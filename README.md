@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+<p align="center">
+    <img src="https://www.litromagazine.com/wp-content/uploads/2016/09/Medium-logo.png" width="320px" alt="Orca logo" />
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">Social application Medium-like, implements base social-network functions</h1>
+<p align="center">The application using async queries to the backend service "Realworld API"</p>
 
-## Available Scripts
+<p align="center">
+    <img src="https://camo.githubusercontent.com/7eefb664821bf5871fb790882456ecb2dfa8872e6e2657af8bcdf3c3b3edf63b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d52656163742d3362326535613f7374796c653d706c6173746963266c6f676f3d7265616374" />
+    <img src="https://camo.githubusercontent.com/642e843f9aa33ce2969085744bf1eebf22d91f28c3c3cca8f545e9ebcdef83cf/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d5765627061636b2d2532333243334134323f7374796c653d666c61742d737175617265266c6f676f3d7765627061636b" alt="">
+    <img src="https://camo.githubusercontent.com/cec92673ea713fa89ba2ae2033daf5851f6f39393ff5b93231aa707d424638d9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656a732d626c61636b3f7374796c653d666c61742d737175617265266c6f676f3d4e6f64652e6a73" alt="">
+</p>
 
-In the project directory, you can run:
+<br>
 
-### `npm start`
+# Example
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### <a href="">Deployed application</a>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<hr>
 
-### `npm test`
+# Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ⚡ [React](https://ru.reactjs.org/),
+- ⭐ [Axios](https://github.com/axios/axios),
+- 🚀 [Webpack](https://vuejs.org/),
+- 💻 [SCSS](https://sass-lang.com/),
+<hr>
+ 
+# Documentation 
 
-### `npm run build`
+As a base for state management using React Hooks. For API queries chosen axios and in the app implements the following queries : <br>
+### User and Authentication:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- ```POST ​/users​/login``` - Existing user login<br>
+- ```GET ​/user``` -  Get current user
+- ```PUT ​/user``` - Update current user password
+- ```POST ​/users``` - Register a new user
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Articles
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- ```GET ​/tags``` - Get tags
+- ```GET ​/articles​/{slug}``` - Get an article
+- ```PUT ​/articles​/{slug}``` - Update an article
+- ```DELETE ​/articles​/{slug}``` - Delete an article
+- ```GET ​/articles​/feed``` - Get recent articles from users you follow
+- ```GET ​/articles``` - Get recent articles globally
+- ```POST ​/articles``` - Create an article
 
-### `npm run eject`
+### Favorites
+- ```POST ​/articles​/{slug}​/favorite``` - Favorite an article
+- ```DELETE ​/articles​/{slug}​/favorite``` - Unfavorite an article
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Profile
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- ```GET ​/profiles​/{username}``` - Get a profile
+- ```POST ​/profiles​/{username}​/follow``` - Follow a user
+- ```DELETE ​/profiles​/{username}​/follow``` - Unfollow a user
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<br>
+In the application was implements custom hooks:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### useFetch
 
-## Learn More
+Using useCallback pass the data to the backend:
+```
+const doFetch = useCallback((options = {}) => {
+        setOptions(options);
+        setIsLoading(true);
+    }, []); 
+  ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### useLocalStorage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Current hook facilitate interaction with localStorage
+```
+(key, initialValue = '') => {
+    const [value, setValue] = useState(() => {
+        return localStorage.getItem(key) || initialValue;
+    })
 
-### Code Splitting
+    useEffect(() => {
+        localStorage.setItem(key, value);
+    }, [value, key]);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    return [value, setValue]
+}
+  ```
+<hr>
 
-### Analyzing the Bundle Size
+# Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- #### Sign-up, sign-in and sign-out 
+- #### Post and delete your article,
+- #### Like and dislike other users,
+- #### Сustomize your profile and upload an avatar,
+- #### Filtration feed by tags,
+- #### Subscribe to other users,
+- #### Add articles to favorites_
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

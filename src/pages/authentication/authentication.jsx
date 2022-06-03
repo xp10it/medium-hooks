@@ -9,10 +9,8 @@ const Authentication = () => {
     const location = useLocation().pathname;
 
     const isLogin = location === '/login';
-
     const titleText = isLogin ? 'Login' : 'Registration';
     const link = isLogin ? 'Need an account' : 'Have an account?';
-    const title = document.title = titleText;
     const submit = isLogin ? 'Sign-in' : 'Sign-up';
     const requestUrl = isLogin ? '/users/login' : '/users';
 
